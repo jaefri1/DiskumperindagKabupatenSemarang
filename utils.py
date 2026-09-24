@@ -107,7 +107,7 @@ def render_sidebar(df_klaster: pd.DataFrame):
 
     with st.sidebar:
         st.image(
-            "data\pic\Seal_of_Semarang_Regency.svg.webp",
+            "data/pic/Seal_of_Semarang_Regency.svg.webp", 
             width=65
         )
         st.markdown(
