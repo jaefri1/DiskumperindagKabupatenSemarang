@@ -74,11 +74,12 @@ if st.button("Generate & download PDF", type="primary"):
                 )
                 chart_images = {}
 
+        jumlah_jenis_kop = df_kop_jenis["jenis_koperasi"].nunique()
         kpi_list = [
             {"label": "Total UMKM",     "nilai": f"{total_umkm:,}".replace(",", "."),
              "delta": f"dari {len(df_filtered)} kecamatan", "naik": True},
             {"label": "Total Koperasi", "nilai": f"{total_koperasi:,}".replace(",", "."),
-             "delta": "5 jenis koperasi", "naik": True},
+             "delta": f"{jumlah_jenis_kop} jenis koperasi", "naik": True},
             {"label": "Industri Kecil", "nilai": f"{total_industri:,}".replace(",", "."),
              "delta": "unit usaha", "naik": True},
             {"label": "Rata-rata UMKM/Kecamatan", "nilai": f"{rata_umkm_kec:,.0f}".replace(",", "."),

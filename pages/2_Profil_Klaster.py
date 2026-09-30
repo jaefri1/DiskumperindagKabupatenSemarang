@@ -28,7 +28,7 @@ df_filtered = terapkan_filter(df_klaster, filter_kec, filter_klaster)
 
 st.markdown(
     '<div class="dinas-header"><h1>Profil Klaster</h1>'
-    '<p>Hasil segmentasi K-Means · 4 klaster berdasarkan UMKM, industri & koperasi</p></div>',
+    '<p>Hasil segmentasi K-Means · 3 klaster berdasarkan UMKM, industri & koperasi</p></div>',
     unsafe_allow_html=True,
 )
 
@@ -56,7 +56,7 @@ st.markdown('<p class="section-title">Profil klaster</p>', unsafe_allow_html=Tru
 st.caption(
     "Klaster diberi nomor urut saja, bukan nama. Karakteristiknya dibaca "
     "langsung dari rata-rata & peringkat tiap indikator (1 = tertinggi, "
-    "4 = terendah dari 4 klaster) — data 3 indikator ini menunjukkan pola, "
+    "3 = terendah dari 3 klaster) — data 3 indikator ini menunjukkan pola, "
     "bukan kesimpulan tentang baik-buruknya suatu kecamatan."
 )
 
