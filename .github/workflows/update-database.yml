@@ -1,0 +1,55 @@
+name: Perbarui Database Otomatis
+
+# Jalan otomatis setiap ada perubahan file di data/raw/ (upload/timpa
+# Excel atau CSV lewat GitHub web), atau bisa dipicu manual lewat tab
+# "Actions" di GitHub kalau perlu jalankan ulang tanpa mengubah apa pun.
+on:
+  push:
+    paths:
+      - "data/raw/**"
+  workflow_dispatch:
+
+# Wajib "write" supaya robot ini boleh commit balik hasil database yang
+# sudah diperbarui ke repo.
+permissions:
+  contents: write
+
+jobs:
+  rebuild-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil kode repo
+        uses: actions/checkout@v4
+
+      - name: Siapkan Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install library yang dibutuhkan
+        run: |
+          pip install pandas numpy openpyxl scikit-learn
+
+      - name: Bersihkan data UMKM
+        run: python cleaning_umkm_kbli.py
+
+      - name: Bersihkan data koperasi
+        run: python cleaning_koperasi_kecamatan.py
+
+      - name: Bersihkan data aset, industri & omset
+        run: python cleaning_sisa.py
+
+      - name: Jalankan K-Means clustering
+        run: python clustering_kmeans.py
+
+      - name: Bangun ulang database
+        run: python setup_database.py
+
+      - name: Commit & push hasil yang diperbarui
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/clean/ data/processed/ data/db/umkm_semarang.db
+          git diff --staged --quiet && echo "Tidak ada perubahan data." || \
+            git commit -m "Auto-update: database diperbarui dari data/raw/ terbaru"
+          git push
