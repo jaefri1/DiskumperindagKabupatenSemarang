@@ -239,7 +239,7 @@ def buat_skema(conn: sqlite3.Connection) -> None:
         GROUP BY k.nama_kecamatan, kp.tahun, kp.semester;
     """)
     conn.commit()
-    print("  Skema dibuat: 9 tabel (2 tabel referensi baru: kbli_kategori, "
+    print("  Skema dibuat: 10 tabel (2 tabel referensi baru: kbli_kategori, "
           "jenis_koperasi_ref) + 5 VIEW")
 
 

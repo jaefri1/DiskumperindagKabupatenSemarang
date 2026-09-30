@@ -75,7 +75,7 @@ with c2:
     st.plotly_chart(buat_fig_klaster_pie(df_filtered), width='stretch')
 
 st.caption(
-    "Klaster bernomor 1-4 tanpa urutan/peringkat kualitas — buka halaman "
+    "Klaster bernomor 1-3 tanpa urutan/peringkat kualitas — buka halaman "
     "\"Profil Klaster\" di sidebar untuk detail tiap klaster."
 )
 

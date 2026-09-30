@@ -18,13 +18,13 @@ from pathlib import Path
 BASE_DIR     = Path(__file__).parent
 DB_PATH      = BASE_DIR / "data" / "db" / "umkm_semarang.db"
 GEOJSON_PATH = BASE_DIR / "data" / "geo" / "kecamatan_semarang.geojson"
-TAHUN_UTAMA  = 2025   # tahun data terlengkap (hasil audit ketersediaan data)
+TAHUN_UTAMA  = 2024   # tahun data terlengkap (hasil audit ketersediaan data —
+                       # 2025 baru terisi sebagian saat file ini diperbarui)
 
 WARNA_KLASTER = {
     "Klaster 1": "#378ADD",
     "Klaster 2": "#1D9E75",
     "Klaster 3": "#EF9F27",
-    "Klaster 4": "#7F77DD",
 }
 
 # Nama sektor KBLI dipersingkat agar enak dibaca di chart
@@ -107,7 +107,7 @@ def render_sidebar(df_klaster: pd.DataFrame):
 
     with st.sidebar:
         st.image(
-            "data/pic/Seal_of_Semarang_Regency.svg.webp", 
+            str(BASE_DIR / "data" / "pic" / "Seal_of_Semarang_Regency.svg.webp"),
             width=65
         )
         st.markdown(
@@ -119,8 +119,8 @@ def render_sidebar(df_klaster: pd.DataFrame):
         </p>
         ''',
         unsafe_allow_html=True
-),
-        
+        )
+
         st.title("Dashboard UMKM")
         st.caption("Kab. Semarang · Dinas Koperasi, UMKM, Perindustrian & Perdagangan")
         st.divider()
